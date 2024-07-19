@@ -17,12 +17,18 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Query Azure Resource Graph
+      id: accessing-outputs
       uses: juliobsilva/action-resource-graph@v1
       with:
         resource_name: "storageaccountbackendtf"
         resource_type: "microsoft.storage/storageaccounts"
         
-
+    - name: Displaying the outputs
+      run: |
+        echo "Resource ID: ${{ steps.accessing-outputs.outputs.id }}"
+        echo "Resource Name: ${{ steps.accessing-outputs.outputs.name }}"
+        echo "Resource Type: ${{ steps.accessing-outputs.outputs.type }}"
+        echo "Subscription ID: ${{ steps.accessing-outputs.outputs.subscription_id }}"
 
 
     
