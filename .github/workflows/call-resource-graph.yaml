@@ -1,0 +1,30 @@
+name: Azure Resource Graph StorageAccounts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-resource-graph:
+    runs-on: ubuntu-latest
+
+    steps:
+      
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Query Azure Resource Graph
+      uses: juliobsilva/action-resource-graph@v1
+      with:
+        resource_name: "storageaccountbackendtf"
+        resource_type: "microsoft.storage/storageaccounts"
+        
+
+
+
+    
+
+
